@@ -9,15 +9,15 @@
 
 
 body {
-    
+   
 background:  url(imagenes/background.jpg);
 </style>
-
+<link rel="stylesheet" type="text/css" href="css/estil.css"></link>
 <script type="text/javascript" src="js/validar.js">
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ebanisteria Chalo</title>
-<link rel="stylesheet" type="text/css" href="css/estil.css"></link>
+
 <script type="text/javascript" src="js/validar.js"></script>
 <script type="text/javascript">
     function popup(url,ancho,alto) {
@@ -34,29 +34,20 @@ background:  url(imagenes/background.jpg);
 </head>
 <div id="AdminClientes" >
 
-	
-
-<form  name ="xForm" method="POST" action="./Autenticacion" />
-
-  <div id="site_content">	
-                
-                <div id="banner_image">
-                    <div id="slider" >
                         <img src="imagenes/Cafe5.png" />
                         
                        
                         
                         
-                        </div>
-                    </div>
-                
-        
+                      
+
+    <form  name ="xForm" method="POST" action="./Autenticacion">      
 
 
 <h3><center>Ebanistería y Carpintería "Chalo"</h1></center>
 
    
-   <table>
+   <table left="100%">
      <tr>
     <td>Usuario</td>
     <td><input type="text" name="txtnumero" placeholder="Ingrese Identificación" onkeypress="return numeros(event); "

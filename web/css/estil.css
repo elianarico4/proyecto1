@@ -1,9 +1,8 @@
-
 #AdminClientes {
- background:#282828url(../imagenes/b.jpg);*/
+ 
 width: 350px;
-padding: 20px;
-margin: 100px auto;
+padding: 100px;
+margin: #500px auto;
 
 }
 
@@ -57,6 +56,8 @@ border-radius: 15px;
 -webkit-border-radius: 15px;
 font-family:tahoma;
 }
+
+
 
 
 
