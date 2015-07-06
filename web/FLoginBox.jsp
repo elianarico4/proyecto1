@@ -9,8 +9,8 @@
 
 
 body {
-    background:#282828url(../imagenes/background.jpg);
-background:  url(imagenes/b.jpg);
+    
+background:  url(imagenes/background.jpg);
 </style>
 
 <script type="text/javascript" src="js/validar.js">
@@ -34,10 +34,23 @@ background:  url(imagenes/b.jpg);
 </head>
 <div id="AdminClientes" >
 
-
 	
 
 <form  name ="xForm" method="POST" action="./Autenticacion" />
+
+  <div id="site_content">	
+                
+                <div id="banner_image">
+                    <div id="slider" >
+                        <img src="imagenes/Cafe5.png" />
+                        
+                       
+                        
+                        
+                        </div>
+                    </div>
+                
+        
 
 
 <h3><center>Ebanistería y Carpintería "Chalo"</h1></center>

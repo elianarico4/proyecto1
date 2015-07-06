@@ -9,7 +9,6 @@
 <%@page import="java.util.List"%>
 
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
     
@@ -60,8 +59,6 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 
  <html>
 <head>
-    
-       
 	
  <script type="text/javascript" src="js/validar.js">
            
