@@ -4,6 +4,9 @@
  */
 package chalo.entidades;
 
+import chalo.negocio.UsuarioN;
+import java.util.List;
+
 /**
  *
  * @author Usuario
@@ -212,7 +215,7 @@ public class Usuario {
     }
 
     public Usuario buscarUsuario(Usuario buscar) {
-        if (buscar == null) {
+        if (buscar == null || cab == null) {
             return null;
         }
         Usuario p = cab;
@@ -239,26 +242,32 @@ public class Usuario {
                     return "Actualizar registro nulo";
                 } else {
                     Usuario p = cab;
-                    while (p != null && !p.getIdentidad().equals(actualizar.getIdentidad())) {
-                        aux = p;
-                        p = p.getSiguiente();
-                    }
-                    if (p != null) {
-                        aux.setSiguiente(actualizar);
-                        actualizar.setSiguiente(p.getSiguiente());
-                        
+                    if (buscar == cab) {
+                        actualizar.setSiguiente(cab.getSiguiente());
+                        cab = actualizar;
+                    } else {
+                        while (p != null && !p.getIdentidad().equals(actualizar.getIdentidad())) {
+                            aux = p;
+                            p = p.getSiguiente();
+                        }
+                        if (p != null) {
+                            aux.setSiguiente(actualizar);
+                            actualizar.setSiguiente(p.getSiguiente());
+
+                        }
                     }
                 }
-                
+
                 return "Actualizar con exito";
             }
         }
         return "No existe lista.";
     }
+
     /**
-     * 
+     *
      * @param actualizar
-     * @return 
+     * @return
      */
     public String eliminarUsuario(Usuario eliminar) {
 
@@ -270,14 +279,18 @@ public class Usuario {
                 if (buscar == null) {
                     return "Eliminar registro nulo";
                 } else {
-                    Usuario p = cab;
-                    while (p != null && !p.getIdentidad().equals(eliminar.getIdentidad())) {
-                        aux = p;
-                        p = p.getSiguiente();
-                    }
-                    if (p != null) {
-                        aux.setSiguiente(p.getSiguiente());
-                        
+                    if (buscar == cab) {
+                        cab = cab.getSiguiente();
+                    } else {
+                        Usuario p = cab;
+                        while (p != null && !p.getIdentidad().equals(eliminar.getIdentidad())) {
+                            aux = p;
+                            p = p.getSiguiente();
+                        }
+                        if (p != null) {
+                            aux.setSiguiente(p.getSiguiente());
+
+                        }
                     }
                 }
                 buscar.setApellidos(apellidos);
@@ -286,14 +299,25 @@ public class Usuario {
         }
         return "No existe lista.";
     }
-    
-    public void imprimirLista(){
-        if(cab!=null){
+
+    public void imprimirLista() {
+        if (cab != null) {
             aux = cab;
-            while(aux != null){
-                System.out.print(" Identificacion:"+aux.getIdentidad()+"-->");
+            while (aux != null) {
+                System.out.println(" Nombre:" + aux.getNombre() + "-->");
                 aux = aux.getSiguiente();
             }
         }
+    }
+    
+    public Usuario cargarLista(){
+        List<Usuario> lista = new UsuarioN().ListadoUsuario();
+        if(lista != null){
+            for (Usuario usuario : lista) {
+                insertarFinal(usuario);
+            }
+        }
+        imprimirLista();
+        return this.cab;
     }
 }

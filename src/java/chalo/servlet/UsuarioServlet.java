@@ -19,7 +19,7 @@ import chalo.negocio.UsuarioN;
  */
 public class UsuarioServlet extends HttpServlet {
     
-    static Usuario lista = new Usuario();
+    static Usuario lista = new Usuario().cargarLista();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -93,7 +93,6 @@ public class UsuarioServlet extends HttpServlet {
                 Usuario usu = new Usuario(identidad, documento, nombre, apellidos, email, celular, direccion, clave, telefono, estado, perfil, genero);
                 // Validar que no exista el usuario antes de crearlo.
                 UsuarioServlet.lista.insertarPrincipio(usu);
-                UsuarioServlet.lista.imprimirLista();
                 un.getInsertarUsuario(usu);
                 request.setAttribute("listado", un.ListadoUsuario());
             } catch (Exception e) {
@@ -104,10 +103,17 @@ public class UsuarioServlet extends HttpServlet {
 
         if ("actualizar".equals(request.getParameter("action"))) {
             try {
-                un.getActualizarUsuario(new Usuario(identidad, documento, nombre, apellidos, email, celular, direccion, clave, telefono, estado, perfil, genero));
+                Usuario usu = new Usuario(identidad, documento, nombre, apellidos, email, celular, direccion, clave, telefono, estado, perfil, genero);
+                System.out.print("Antes--> ");
+                UsuarioServlet.lista.imprimirLista();
+                UsuarioServlet.lista.actualizarUsuario(usu);
+                System.out.print("Despues--> ");
+                UsuarioServlet.lista.imprimirLista();
+                un.getActualizarUsuario(usu);
                 request.setAttribute("listado", un.ListadoUsuario());
             } catch (Exception e) {
                 m = "" + e.getMessage();
+                e.printStackTrace();
             }
         }//fin boton actualizar
 
@@ -117,6 +123,11 @@ public class UsuarioServlet extends HttpServlet {
 
         if ("buscar".equals(request.getParameter("action"))) {
             try {
+                Usuario usu = new Usuario();
+                usu.setIdentidad(identidad);
+                System.out.println("buscando>>");
+                usu = UsuarioServlet.lista.buscarUsuario(usu);
+                System.out.println("Nombre--> "+usu.getNombre());
                 request.setAttribute("datousuario", un.getUsuario(identidad));
                 request.setAttribute("listado", un.ListadoUsuario());
                 request.setAttribute("actualizar", "readonly");
