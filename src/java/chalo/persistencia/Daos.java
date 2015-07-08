@@ -684,6 +684,16 @@ return respuesta;
             //String estado, String descripcion
 
 
+//String codigo;
+//String nombre;
+//String estado;
+//String tama;
+//String color;
+//String fechai;
+//String fechav;
+//String medida;
+//String preci;
+
 public List<Materia>Listadomateria (Connection con) {
     
  List<Materia> resultado = new  ArrayList<Materia>(); 
@@ -693,11 +703,14 @@ ResultSet r=p.executeQuery();
  while(r.next()){
   Materia s= new Materia();
  s.setCodigo(r.getString(1));
- s.setMedida(r.getString(2));
- s.setFechai(r.getString(3));
- s.setFechav(r.getString(4));
- s.setEstado(r.getString(5));
- s.setDescripcion(r.getString(6));
+ s.setNombre(r.getString(2));
+ s.setEstado(r.getString(3));
+ s.setTama(r.getString(4));
+ s.setColor(r.getString(5));
+ s.setFechai(r.getString(6));
+ s.setFechav(r.getString(7));
+ s.setMedida(r.getString(8));
+ s.setPreci(r.getString(9));
 
  resultado.add(s);
  
@@ -726,12 +739,16 @@ Materia s =new Materia();
  PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getMateria(idv));
 ResultSet r=p.executeQuery();
  while(r.next()){
+ 
  s.setCodigo(r.getString(1));
- s.setMedida(r.getString(2));
- s.setFechai(r.getString(3));
- s.setFechav(r.getString(4));
- s.setEstado(r.getString(5));
- s.setDescripcion(r.getString(6));
+ s.setNombre(r.getString(2));
+ s.setEstado(r.getString(3));
+ s.setTama(r.getString(4));
+ s.setColor(r.getString(5));
+ s.setFechai(r.getString(6));
+ s.setFechav(r.getString(7));
+ s.setMedida(r.getString(8));
+ s.setPreci(r.getString(9));
 
 }//fin mientras
 }//fin Try
@@ -746,12 +763,15 @@ ResultSet r=p.executeQuery();
 
 public String getInsertarMateria(
         Connection con,
-        String codigo,
-        String medida,
-        String fechai,
-        String fechav,
-        String estado,
-        String descripcion
+            String codigo,
+            String nombre,
+            String estado,
+            String tama,
+            String color,
+            String fechai,
+            String fechav,
+            String medida,
+            String preci
        
         
    ){
@@ -760,11 +780,14 @@ try{
 PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getInsertarMateria());
 //(?,?,?,?,?)
 p.setString(1, codigo);
-p.setString(2, medida);
-p.setString(3, fechai);
-p.setString(4, fechav);
-p.setString(5, estado);
-p.setString(6, descripcion);
+p.setString(2, nombre);
+p.setString(3, estado);
+p.setString(4, tama);
+p.setString(5, color);
+p.setString(6, fechai);
+p.setString(7, fechav);
+p.setString(8, medida);
+p.setString(9, preci);
 
 
 //Luego ejecutamos la acciom
@@ -786,12 +809,16 @@ return respuesta;
 
 public String getActualizarMateria(
         Connection con,
-       String codigo,
-        String medida,
-        String fechai,
-        String fechav,
-        String estado,
-        String descripcion
+             
+            String codigo,
+            String nombre,
+            String estado,
+            String tama,
+            String color,
+            String fechai,
+            String fechav,
+            String medida,
+            String preci
         ){
 String respuesta="";
 try{
@@ -801,11 +828,14 @@ try{
 PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getActualizarMateria());
 //(?,?,?,?,?,?,?,?,?,?,?,?)
 p.setString(1, codigo);
-p.setString(2, medida);
-p.setString(3, fechai);
-p.setString(4, fechav);
-p.setString(5, estado);
-p.setString(6, descripcion);
+p.setString(2, nombre);
+p.setString(3, estado);
+p.setString(4, tama);
+p.setString(5, color);
+p.setString(6, fechai);
+p.setString(7, fechav);
+p.setString(8, medida);
+p.setString(9, preci);
 //Luego ejecutamos la acciom
 p.execute();//Este metdodo no retorna filas
 // a diferencia del metodo executeQuery()

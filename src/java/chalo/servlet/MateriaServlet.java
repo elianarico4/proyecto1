@@ -40,11 +40,15 @@ public class MateriaServlet extends HttpServlet {
   
         
         String codigo = request.getParameter("txtcodigo");
-        String medida = request.getParameter("cbomedida");
+        String nombre = request.getParameter("txtnombre");
+        String estado = request.getParameter("cboestado");
+        String tama = request.getParameter("txttama");
+        String color = request.getParameter("txtcolor");
         String fechai = request.getParameter("txtingreso");
         String fechav = request.getParameter("txtingresov");
-        String estado = request.getParameter("cboestado");
-        String descripcion = request.getParameter("txtcomentarios");
+        String medida = request.getParameter("cbomedida");
+        String preci = request.getParameter("txtprecio");
+        
         
         String boton = request.getParameter("action");
         request.setAttribute("Listado",null);
@@ -73,7 +77,8 @@ public class MateriaServlet extends HttpServlet {
        
      if ("guardar".equals(request.getParameter("action"))) {
             try {
-               un.getInsertarMateria(new Materia(codigo,medida,fechai,fechav,estado,descripcion));
+               un.getInsertarMateria(new Materia(codigo,  nombre, estado, tama, color,
+             fechai, fechav, medida, preci));
                request.setAttribute("listado", un.Listadomateria());
             } catch (Exception e) {
                 m=""+e.getMessage();
@@ -85,7 +90,8 @@ public class MateriaServlet extends HttpServlet {
 
   if ("actualizar".equals(request.getParameter("action"))) {
             try {
-                un.getActualizarMateria(new Materia(codigo,medida,fechai,fechav,estado,descripcion));
+                un.getActualizarMateria(new Materia(codigo,  nombre, estado, tama, color,
+             fechai, fechav, medida, preci));
                 request.setAttribute("listado", un.Listadomateria());
             }catch (Exception e) {
                 m=""+e.getMessage();
@@ -95,11 +101,14 @@ public class MateriaServlet extends HttpServlet {
          if ("nuevo".equals(request.getParameter("action"))) {//la request es la peticion del cliente
                  try {
                       enti.setCodigo((""));
-                      enti.setMedida((""));
-                      enti.setFechai((""));
-                     enti.setFechav((""));
+                      enti.setNombre((""));
                       enti.setEstado((""));
-                      enti.setDescripcion((""));
+                      enti.setTama((""));
+                      enti.setColor((""));
+                      enti.setFechai((""));
+                      enti.setFechav((""));
+                       enti.setMedida((""));;
+                      enti.setPreci((""));
                      
                      
                      request.setAttribute("Listado", null);

@@ -15,25 +15,25 @@ public class SQLHelpersMateria {
 
 public static String getMateria()
 {
-return "SELECT codigo,medida,fechai,fechav,estado,descripcion from tblmateria";   
+return "SELECT codigo,  nombre, estado, tama, color, fechai, fechav, medida, preci from tblmateria";   
 }//fin método  
 
 public static String getMateria(String codigo)
 {
-return "SELECT codigo,medida,fechai,fechav,estado,descripcion from tblmateria where codigo='"+codigo+"'";   
+return "SELECT codigo,  nombre, estado, tama, color,fechai, fechav, medida, preci from tblmateria where codigo='"+codigo+"'";   
 }//fin método buscar un dato
 //Nos vamos para---> Daos
 // Buscar un dato
 //insertar un dato 
 public static String getInsertarMateria(){
-return "INSERT INTO tblmateria(codigo,medida,fechai,fechav,estado,descripcion)"
-        +"values(?,?,?,?,?,?)";
+return "INSERT INTO tblmateria(codigo,  nombre, estado, tama, color, fechai, fechav, medida, preci)"
+        +"values(?,?,?,?,?,?,?,?,?)";
 }//fin insertar
 
 //Actualizar un dato
 public static String getActualizarMateria(){
 
-    return "UPDATE tblmateria codigo=?,medida=?,fechai=?,fechav=?,estado=?,descripcion=?";
+    return "UPDATE tblmateria codigo=?,nombre=?, estado=?,tama=?, color=?,fechai=?,fechav=?,medida=?,preci=?";
 }//fin actualizar 
     //nos vamos para daos
     

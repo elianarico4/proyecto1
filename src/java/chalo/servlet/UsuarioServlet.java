@@ -129,7 +129,7 @@ public class UsuarioServlet extends HttpServlet {
                 usu = UsuarioServlet.lista.buscarUsuario(usu);
                 System.out.println("Nombre--> "+usu.getNombre());
                 request.setAttribute("datousuario", un.getUsuario(identidad));
-                request.setAttribute("listado", un.ListadoUsuario());
+
                 request.setAttribute("actualizar", "readonly");
                 //regresamos a FUsuario
             } catch (Exception e) {

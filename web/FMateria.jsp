@@ -13,11 +13,16 @@
 <%
     
         String codigo = request.getParameter("txtcodigo");
-        String medida = request.getParameter("cbomedida");
+        String nombre = request.getParameter("txtnombre");
+        String estado = request.getParameter("cboestado");
+        String tama = request.getParameter("txttama");
+        String color = request.getParameter("txtcolor");
         String fechai = request.getParameter("txtingreso");
         String fechav = request.getParameter("txtingresov");
-        String estado = request.getParameter("cboestado");
-        String descripcion = request.getParameter("txtcomentarios");
+        String medida = request.getParameter("cbomedida");
+        String preci = request.getParameter("txtprecio");
+        
+        
        
         
     String men1 = (String) request.getAttribute("mensaje");
@@ -30,11 +35,16 @@
  //cargamos los datos en las variables
  if(mat!=null){
      codigo=mat.getCodigo();
-     medida=mat.getMedida();
+     nombre=mat.getNombre();
+     tama=mat.getTama();
+     color=mat.getColor();
      fechai=mat.getFechai();
      fechav=mat.getFechav();
-     estado=mat.getEstado();
-     descripcion=mat.getDescripcion();
+     medida=mat.getMedida();
+     preci=mat.getPreci();
+
+     
+     
     
      
 }//fin si 
@@ -83,11 +93,54 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 <tr>
 <td>C&#243;digo</td>
 <td><input type="text" name="txtcodigo" <%=ed%> class="texto" value="<%=codigo!=null?codigo:""%>" placeholder="Ingrese c&#243;digo" onkeypress="return numeros(event); "
-id="" size="12" maxlength="10">
+id="" size="15" maxlength="10">
 </td>
 
 
 
+<tr>
+</tr>
+<tr>
+<td>Nombre de la materia</td>
+<td><input type="text" name="txtnombre" <%=ed%> class="texto" value="<%=nombre!=null?nombre:""%>" placeholder="Ingrese nombre" 
+id="" size="15" maxlength="10">
+</td>
+  <td>Estado</td>
+   <td><select  name="cboestado" class="texto">
+   <option value="">Seleccione</option>
+     <option value="Activo"<%if("Activo".equals(estado)){%>selected<% }%>>Activo</option>
+     <option value="Inactivo"<%if("Inactivo".equals(estado)){%>selected<% }%>>Inactivo</option>
+
+</tr>
+
+<tr>
+<td>Tamaño</td>
+<td><input type="text" name="txttama"value="<%=codigo!=null?codigo:""%>" placeholder="Ingrese tamaño" onkeypress="return numeros(event); "
+id="" size="15" maxlength="10">
+</td>
+
+
+<td>Color</td>
+<td><input type="text" name="txtcolor" class="texto" value="<%=codigo!=null?codigo:""%>" placeholder="Ingrese color"
+id="" size="15" maxlength="20">
+</td>
+
+</tr>
+
+<tr>
+<td>Fecha Ingreso</td>
+<td><input type="text" name="txtingreso" id ="fechai" value="<%=fechai!=null?fechai:""%>"  placeholder="Ingrese fecha"
+id="" size="15" maxlength="10">
+</td>
+
+<td>Fecha Vto.</td>
+<td><input type="text" name="txtingresov"  id ="fechav"  value="<%=fechav!=null?fechav:""%>"  placeholder="Ingrese fecha" id="" size="15" maxlength="10">
+</td>
+
+</tr>
+
+
+<tr>
 <td>Uni. Medida</td>
 <td>
     
@@ -101,35 +154,14 @@ id="" size="12" maxlength="10">
 <option value="M3" <%if("M3".equals(medida)){%>selected<% }%> >M3</option>
 </select>
 
-</tr>
-<tr>
-<td>Fecha Ingreso</td>
-<td><input type="text" name="txtingreso" id ="fechai" value="<%=fechai!=null?fechai:""%>"  placeholder="Ingrese fecha"
-id="" size="12" maxlength="10">
+<td>Precio</td>
+<td><input type="text" name="txtprecio"  id ="fechav"  value="<%=fechav!=null?fechav:""%>"  placeholder="Ingrese fecha" id="" size="15" maxlength="10" onkeypress="return numeros(event); ">
+ 
 </td>
 
-
-<td>Fecha Vto.</td>
-<td><input type="text" name="txtingresov"  id ="fechav"  value="<%=fechav!=null?fechav:""%>"  placeholder="Ingrese fecha" id="" size="12" maxlength="10">
-</td>
 </tr>
 
-   <td>Estado</td>
-   <td><select  name="cboestado" class="texto">
-   <option value="">Seleccione</option>
-     <option value="Activo"<%if("Activo".equals(estado)){%>selected<% }%>>Activo</option>
-     <option value="Inactivo"<%if("Inactivo".equals(estado)){%>selected<% }%>>Inactivo</option>
-
-
 </tr>
-<td colspan="2">Descripción materia</td>
-</tr>
-
-<tr><td colspan="2"><textarea cols="35" rows="7" name="txtcomentarios" value="<%=descripcion!=null?descripcion:""%>" placeholder="Ingrese descripción de tarea asignada">
-</textarea>
-</td>
-</tr>
-
 </table>
 
 <jsp:include page="FBotones.jsp" flush="true"/>
@@ -138,12 +170,10 @@ id="" size="12" maxlength="10">
               <table width="100%" height="200" border="1" cellspacing="3" cellpading=5"">
                   <tr>
                        <td>Código</td>       
-                       <td>Unid. Medida</td>
-                       <td>Fecha Ingreso</td>
-                       <td>Fecha Vto.</td>    
-                       <td>Estado</td>      
-                       <td>Descripcion</td>
-                   
+                       <td>Nombre</td>
+                       <td>Tamaño</td>
+                       <td>Precio</td>    
+                       <td>Estado</td>                   
                       
                   </tr>
                   <!--Recorrer para cargar datos-->
@@ -151,14 +181,11 @@ id="" size="12" maxlength="10">
                   <tr>
                       
                       <td><%=us.getCodigo()%></td>
-                      <td><%=us.getMedida()%></td>
-                      <td><%=us.getFechai()%></td>
-                      <td><%=us.getFechav()%></td>
-                      
-                      
+                      <td><%=us.getNombre()%></td>
+                      <td><%=us.getTama()%></td>
+                      <td><%=us.getPreci()%></td>
                       <td><%=us.getEstado()%></td>
-                      <td><%=us.getDescripcion()%></td>
-                       
+                        
                       <td><a href="./MateriaServlet?action=buscar&txtcodigo=<%=us.getCodigo()%>"><img src="imagenes/au.png" border="0" ></a></td>
                   
                              

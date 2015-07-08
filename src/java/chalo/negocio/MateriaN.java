@@ -31,28 +31,52 @@ Connection c= new Conexion().getCon();
 return dao1.getMateria(c, mate);
 //una vez prrogramado nos vamos para usucario servlet al buscar 
     
-//String codigo, String medida, String fechai, String fechav,
-            //String estado, String descripcion
+//String codigo;
+//String nombre;
+//String estado;
+//String tama;
+//String color;
+//String fechai;
+//String fechav;
+//String medida;
+//String preci;
 }
 public void getInsertarMateria(Materia mate)throws Exception{
 //throws es una clase  que permite programar nuestras propias excepciones
 Conexion con = new Conexion();
 String mensajeError="";
 String codigo = mate.getCodigo();
-String medida = mate.getMedida();
+String nombre = mate.getNombre();
+String estado = mate.getEstado();
+String tama = mate.getTama();
+String color = mate.getColor();        
 String fechai = mate.getFechai();
 String fechav = mate.getFechav();
-String estado = mate.getEstado();
-String descripcion = mate.getDescripcion();
+String medida = mate.getMedida();
+String preci = mate.getPreci();
 
 
 
 if("".equals(codigo) || null==codigo){
 mensajeError+="<br>Ingrese el codigo";
 }
-if("".equals(medida) || null==medida){
-mensajeError+="<br>Ingrese la Unidad de Medida";
+
+if("".equals(nombre) || null==nombre){
+mensajeError+="<br>Ingrese nombre";
 }
+
+if("".equals(estado) || null==estado){
+mensajeError+="<br>Ingrese estado";
+}
+
+if("".equals(tama) || null==tama){
+mensajeError+="<br>Ingrese tamaño";
+}
+
+if("".equals(color) || null==color){
+mensajeError+="<br>Ingrese color";
+}
+
 if("".equals(fechai) || null==fechai){
 mensajeError+="<br>Ingrese Fecha Ingreso";
 }
@@ -60,11 +84,11 @@ if("".equals(fechav) || null==fechav){
 mensajeError+="<br>Ingrese Fecha Vto";
 
 }
-if("".equals(estado) || null==estado){
-mensajeError+="<br>Ingrese el estado";
+if("".equals(medida) || null==medida){
+mensajeError+="<br>Ingrese la Unidad de Medida";
 }
-if("".equals(descripcion) || null==descripcion){
-mensajeError+="<br>Ingrese descripción";
+if("".equals(preci) || null==preci){
+mensajeError+="<br>Ingrese precio";
 }
     //estado="Activo"; ----> esto se hace si el campo no es obligatorio pero se tiene que dar algun valor 
 
@@ -77,8 +101,8 @@ if(!"".equals(mensajeError)){
 
 //
 
-mensajeError= dao1.getInsertarMateria(con.getCon(), codigo, medida, fechai, fechav, estado,
-         descripcion);
+mensajeError= dao1.getInsertarMateria(con.getCon(), codigo,  nombre, estado, tama, color,
+             fechai, fechav, medida, preci);
 //validamos y eviamos una excepcion al guardar el dato.
 if(!"".equals(mensajeError)){
  throw new Exception(mensajeError);
@@ -91,19 +115,36 @@ public void getActualizarMateria (Materia mate) throws Exception{
 Conexion con= new Conexion();
 String mensajeError="";
 String codigo = mate.getCodigo();
-String medida = mate.getMedida();
+String nombre = mate.getNombre();
+String estado = mate.getEstado();
+String tama = mate.getTama();
+String color = mate.getColor();        
 String fechai = mate.getFechai();
 String fechav = mate.getFechav();
-String estado = mate.getEstado();
-String descripcion = mate.getDescripcion();
+String medida = mate.getMedida();
+String preci = mate.getPreci();
 
 
 if("".equals(codigo) || null==codigo){
 mensajeError+="<br>Ingrese el codigo";
 }
-if("".equals(medida) || null==medida){
-mensajeError+="<br>Ingrese la Unidad de Medida";
+
+if("".equals(nombre) || null==nombre){
+mensajeError+="<br>Ingrese nombre";
 }
+
+if("".equals(estado) || null==estado){
+mensajeError+="<br>Ingrese estado";
+}
+
+if("".equals(tama) || null==tama){
+mensajeError+="<br>Ingrese tamaño";
+}
+
+if("".equals(color) || null==color){
+mensajeError+="<br>Ingrese color";
+}
+
 if("".equals(fechai) || null==fechai){
 mensajeError+="<br>Ingrese Fecha Ingreso";
 }
@@ -111,11 +152,11 @@ if("".equals(fechav) || null==fechav){
 mensajeError+="<br>Ingrese Fecha Vto";
 
 }
-if("".equals(estado) || null==estado){
-mensajeError+="<br>Ingrese el estado";
+if("".equals(medida) || null==medida){
+mensajeError+="<br>Ingrese la Unidad de Medida";
 }
-if("".equals(descripcion) || null==descripcion){
-mensajeError+="<br>Ingrese descripción";
+if("".equals(preci) || null==preci){
+mensajeError+="<br>Ingrese precio";
 }
 
 if(!"".equals(mensajeError)){
@@ -130,8 +171,8 @@ throw new Exception(mensajeError);
 //verificamos si elusuario existe
 
 
-mensajeError= dao1.getInsertarMateria(con.getCon(), codigo, medida, fechai, fechav, estado,
-         descripcion);
+mensajeError= dao1.getInsertarMateria(con.getCon(), codigo,  nombre, estado, tama, color,
+             fechai, fechav, medida, preci);
 
 //validamos y enviamos una excepción al guardar el dato
 

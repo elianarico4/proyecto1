@@ -11,25 +11,31 @@ package chalo.entidades;
 public class Materia {
     
 String codigo;
-String medida;
+String nombre;
+String estado;
+String tama;
+String color;
 String fechai;
 String fechav;
-String estado;
-String descripcion;
+String medida;
+String preci;
 
 
 
 public Materia (){}
 
-    public Materia(String codigo, String medida, String fechai, String fechav,
-            String estado, String descripcion) {
+    public Materia(String codigo, String nombre, String estado, String tama,  String color,
+            String fechai, String fechav, String medida, String preci) {
         
         this.codigo = codigo;
-        this.medida = medida;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.tama = tama;
+        this.color = color;
         this.fechai = fechai;
         this.fechav = fechav;
-        this.estado = estado;
-        this.descripcion = descripcion;
+        this.medida = medida;
+        this.preci = preci;
         
         
     }
@@ -42,12 +48,36 @@ public Materia (){}
         this.codigo = codigo;
     }
 
-    public String getMedida() {
-        return medida;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMedida(String medida) {
-        this.medida = medida;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public String getTama() {
+        return tama;
+    }
+
+    public void setTama(String tama) {
+        this.tama = tama;
+    }
+    
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getFechai() {
@@ -66,20 +96,20 @@ public Materia (){}
         this.fechav = fechav;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getMedida() {
+        return medida;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setMedida(String medida) {
+        this.medida = medida;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getPreci() {
+        return preci;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPreci(String preci) {
+        this.preci = preci;
     }
     
    
