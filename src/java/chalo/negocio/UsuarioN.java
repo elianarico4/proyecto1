@@ -89,22 +89,17 @@ public class UsuarioN {
             mensajeError += "<br>Ingrese su Correo Electrónico";
         }
 
-        if ("".equals(celular) || null == celular) {
-            mensajeError += "<br>Ingrese su Número de Celular";
-        }
-
 
         if ("".equals(direccion) || null == direccion) {
             mensajeError += "<br>Ingrese su Número de Residencia";
         }
-
-        if ("".equals(clave) || null == clave) {
-            mensajeError += "<br>Ingrese su Clave";
-        }
-
-        if ("".equals(telefono) || null == telefono) {
+ 
+        
+         if ("".equals(clave) || null == clave) {
             mensajeError += "<br>Ingrese su Número de Teléfono";
         }
+        
+        
 
         if ("".equals(estado) || null == estado) {
             mensajeError += "<br>Ingrese su Estado";
@@ -114,10 +109,7 @@ public class UsuarioN {
             mensajeError += "<br>Ingrese su Perfil";
         }
 
-        if ("".equals(genero) || null == genero) {
-            mensajeError += "<br>Ingrese su Genero";
-        }
-
+      
         if (!"".equals(mensajeError)) {
 //! se está negando
 
@@ -193,10 +185,6 @@ public class UsuarioN {
             mensajeError += "<br>Ingrese su Correo Electrónico";
         }
 
-        if ("".equals(celular) || null == celular) {
-            mensajeError += "<br>Ingrese su Número de Celular";
-        }
-
 
         if ("".equals(direccion) || null == direccion) {
             mensajeError += "<br>Ingrese su Número de Residencia";
@@ -206,9 +194,6 @@ public class UsuarioN {
             mensajeError += "<br>Ingrese su Clave";
         }
 
-        if ("".equals(telefono) || null == telefono) {
-            mensajeError += "<br>Ingrese su Número de Teléfono";
-        }
 
         if ("".equals(estado) || null == estado) {
             mensajeError += "<br>Ingrese su Estado";
@@ -218,9 +203,7 @@ public class UsuarioN {
             mensajeError += "<br>Ingrese su Perfil";
         }
 
-        if ("".equals(genero) || null == genero) {
-            mensajeError += "<br>Ingrese su Genero";
-        }
+  
 
         if (!"".equals(mensajeError)) {
 //! se está negando

@@ -41,16 +41,11 @@ public class Autenticacion extends HttpServlet {
             men+="<br>Agregue Usuario";
         
         }
-       
         if("".equals(clave)||null==clave){
-            men="<br>Agregue Contraseña";
+            men="<br>Agregue Clave";
             
-        if("".equals(identidad)||null==identidad & "".equals(clave)||null==clave){
-            men+="<br>Agregue Usuario";
+            
         
-        }    
-        
-     
         }
         
         

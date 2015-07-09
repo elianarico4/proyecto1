@@ -59,6 +59,7 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 
  <html>
 <head>
+    
 	
  <script type="text/javascript" src="js/validar.js">
            
@@ -69,12 +70,15 @@ String ed =(String) request.getAttribute("actualizar")!=null?
     <link rel="stylesheet" type="text/css" href="css/estil.css"></link>
     <script type="text/javascript" src="js/validar.js"> </script>
 </head>
+
+
 <div id="usuario">
   
 
 
 <body>
 
+    
 
    
  </head>
@@ -82,7 +86,7 @@ String ed =(String) request.getAttribute("actualizar")!=null?
  <form name="xform"  method="POST" action="./UsuarioServlet">
       <h1><center>Registro de Usuarios</h1></center>  
                 
-       
+   
 
          
                 
@@ -178,6 +182,9 @@ id="" size="25" maxlength="20">
 <td>Contrase&#241;a</td>
 <td><input type="password" name="txtclave" class="texto" value="<%=clave!=null?clave:""%>"  placeholder="Ingrese contrase&#241;a"
 id="" size="25" maxlength="15">
+
+    
+    
 
 <td>Tel&#233;fono</td>
 <td><input type="text" name="txttelefono" class="texto" value="<%=telefono!=null?telefono:""%>"  placeholder="Ingrese n&#250;mero de tel&#233;fono" onkeypress="return numeros(event); "

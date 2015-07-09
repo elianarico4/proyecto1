@@ -18,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author USER
  */
 public class MateriaServlet extends HttpServlet {
+        static Materia lista = new Materia().cargarLista();
 
-  private String codigo;
+ // private String codigo;
     
 //permite  todos los m�todos de la intef�z servlet
 
@@ -59,7 +60,11 @@ public class MateriaServlet extends HttpServlet {
         
         if ("buscar".equals(request.getParameter("action"))) {//la request es la peticion del cliente
             try {
-                
+                  Materia mat = new Materia();
+                mat.setCodigo(codigo);
+                System.out.println("buscando>>");
+                mat = MateriaServlet.lista.buscarMateria(mat);
+                System.out.println("Nombre--> "+mat.getCodigo());
                 request.setAttribute("datomateria",un.getMateria(codigo));
                 } catch (Exception e) {
                     m=""+e.getMessage();
@@ -77,8 +82,10 @@ public class MateriaServlet extends HttpServlet {
        
      if ("guardar".equals(request.getParameter("action"))) {
             try {
-               un.getInsertarMateria(new Materia(codigo,  nombre, estado, tama, color,
+               Materia mat = new Materia(new Materia(codigo,  nombre, estado, tama, color,
              fechai, fechav, medida, preci));
+                 MateriaServlet.lista.insertarPrincipio(mat);
+                un.getInsertarMateria(mat);
                request.setAttribute("listado", un.Listadomateria());
             } catch (Exception e) {
                 m=""+e.getMessage();
@@ -90,8 +97,14 @@ public class MateriaServlet extends HttpServlet {
 
   if ("actualizar".equals(request.getParameter("action"))) {
             try {
-                un.getActualizarMateria(new Materia(codigo,  nombre, estado, tama, color,
+                 Materia mat = new Materia(new Materia(codigo,  nombre, estado, tama, color,
              fechai, fechav, medida, preci));
+                   System.out.print("Antes--> ");
+                   MateriaServlet.lista.imprimirLista();
+                 MateriaServlet.lista.actualizarMateria(mat);
+                System.out.print("Despues--> ");
+                MateriaServlet.lista.imprimirLista();
+                un.getActualizarMateria(mat);
                 request.setAttribute("listado", un.Listadomateria());
             }catch (Exception e) {
                 m=""+e.getMessage();
