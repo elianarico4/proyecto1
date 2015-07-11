@@ -1,12 +1,15 @@
 <%-- 
     Document   : FBotones
     Created on : 3/04/2014, 09:18:27 AM
-    Author     : Usuario
+    Author     : KAREN MALDONADO Y ELIANA MEDINA
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <table>
 <tr>
+
+<!--Creación botones, los cuales son llamados en cada ventana-->    
+
 
 <td><button input type="submit" name="action" value="nuevo" id="" title ="Nuevo"><img src="imagenes/cr.gif">Nuevo</button></td>    
 <td><button input type="submit" name="action" value="guardar" id="" title ="guardar usuario"><img src="imagenes/guardar.png">Guardar</button></td>

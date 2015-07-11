@@ -11,7 +11,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
-    
+    //Declaración de variables de tipo cadena
     String nombre = request.getParameter("txtnombre");
     String documento = request.getParameter("cbodocumento");
     String apellidos = request.getParameter("txtapellidos");
@@ -31,8 +31,8 @@ List<Usuario>LU=(List<Usuario>) request.getAttribute("listado")!=null?
         (List<Usuario>) request.getAttribute("listado"):null;
 Usuario usu=(Usuario) request.getAttribute("datousuario") !=null?
         (Usuario) request.getAttribute("datousuario"):null;
-//los datos estan cargado en usu(objeto) de tipo Usuario
-//cargamos los datos en las variables
+//Los datos estan cargado en usu(objeto) de tipo Usuario
+//Cargamos los datos en las variables
                 if(usu!=null){
                     
                 nombre= usu.getNombre();
@@ -63,7 +63,7 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 	
  <script type="text/javascript" src="js/validar.js">
            
-            
+ //Se llama la hoja de estilo y además se utiliza javascript para validar que sólo se puedan ingresar números
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ebanisteria Chalo</title>
@@ -83,13 +83,8 @@ String ed =(String) request.getAttribute("actualizar")!=null?
    
  </head>
 
- <form name="xform"  method="POST" action="./UsuarioServlet">
-      <h1><center>Registro de Usuarios</h1></center>  
-                
-   
-
-         
-                
+ <form name="xform"  method="POST" action="./UsuarioServlet"><!-- Declaración del método a utilizar y se llama la clase Servlet -->
+      <h1><center>Registro de Usuarios</h1></center>                
 <h1><center>Ebanistería y Carpintería "Chalo"</h1></center>
 
 
@@ -101,7 +96,8 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 <tr>
     </tr>
 <tr>
-       
+ 
+<!-- Realización del formulario Usuario -->    
                      
 <td>Tipo de Documento</td>
 <td>
@@ -196,14 +192,18 @@ id="" size="25" maxlength="7">
                
                 
            
-           
+           <!-- Se invocan los botones -->
                 
                 <jsp:include page="FBotones.jsp" flush="true"/>
                 <p><%=men!=null? men:""%></p>
               <%if(LU!= null ){%>
               
+              <!-- Creación de la tabla donde se va a mostrar la información -->
+              
                 <table width="100%" height="200" border="1" cellspacing="3" cellpading=5"">
 
+                    <!-- Datos a mostrar en la tabla -->
+                    
                   <tr>
                        <td>Nombre</td>       
                        <td>Apellidos</td>
@@ -226,8 +226,10 @@ id="" size="25" maxlength="7">
                       
                       <td><%=us.getCelular()%></td>
                       <td><%=us.getTelefono()%></td>
-                       
-                      <td><a href="./UsuarioServlet?action=buscar&txtnumero=<%=us.getIdentidad()%>"><img src="imagenes/au.png" border="0" ></a></td>
+                      
+                      <!-- Buscar dando click en imagen -->
+                      
+                      <td><a href="./UsuarioServlet?action=buscar&txtnumero=<%=us.getIdentidad()%>"><img src="imagenes/asf.gif" border="0" ></a></td>
                   
                              
                       

@@ -17,11 +17,12 @@ import chalo.utilidades.Conexion;
 public class UsuarioN {
 
     Daos dao;
-
+//Se invoca la clase Daos
     public UsuarioN() {
         dao = new Daos();
     }// fin constructor
 
+    //Constructor que crea la lista Usuario
     public List<Usuario> ListadoUsuario() {
         Connection c = new Conexion().getCon();
         return dao.ListadoUsuarios(c);
@@ -29,6 +30,8 @@ public class UsuarioN {
 
     }  //fin lista de datos
 
+    //Constructor que crea la conexión entre la base de datos y Usuario
+    
     public Usuario getUsuario(String ide) {
         Connection c = new Conexion().getCon();
         return dao.getUsuario(c, ide);
@@ -42,6 +45,9 @@ public class UsuarioN {
         //una vez programado pasamos al servlet al buscar
 
     }
+    
+    
+    //Constructor que valida el ingreso al sistema con el documento identidad y clave
 
     public Usuario getValidarIngreso(String identidad, String clave) {
         Connection c = new Conexion().getCon();
@@ -49,9 +55,11 @@ public class UsuarioN {
 // una vez programado pasamos
 //  al UsuarioServlet al buscar
     }
+    
+    //Constructor que permite insertar los datos y además valida que no queden campos sin llenar
 
     public void getInsertarUsuario(Usuario user) throws Exception {
-//throws es una clase que permite programar nuestras propias excepciones
+    //throws es una clase que permite programar nuestras propias excepciones
 
         Conexion con = new Conexion();
         String mensajeError = "";
@@ -111,16 +119,21 @@ public class UsuarioN {
 
       
         if (!"".equals(mensajeError)) {
-//! se está negando
+    //! se está negando
 
             throw new Exception(mensajeError);
-        }//fin si no hay ningún error
-//ejecutamos la acción
+        }//fin, si no hay ningún error
+        //ejecutamos la acción
+        
+        //Busca si el usuario ya está registrado y si es así manda una excepción
+        
         Connection c = new Conexion().getCon();
         if (dao.getVerSiExisteUsuario(c, identidad)) {
             mensajeError = "Ya existe El usuario :" + identidad;
             throw new Exception(mensajeError);
         }
+        
+        //Lanza una excepción si la identificación del usuario inicia en cero.
 
         if (identidad.charAt(0) == '0') {
             mensajeError = " El usuario no puede iniciar con (0):" + identidad;
@@ -128,12 +141,14 @@ public class UsuarioN {
 
         }
 
-//lanzar una excepción si el email ya existe
+        //Lanza una excepción si el email ya existe
 
         if (dao.getVerSiExisteEmail(c, email)) {
             mensajeError = "El correo electrónico <br> ya está asignado a <b> otro usuario :" + email;
             throw new Exception(mensajeError);
         }
+        
+        
 
         mensajeError = dao.getInsertarUsuario(con.getCon(), identidad, documento, nombre, apellidos, email,
                 celular, direccion, clave, telefono, estado, perfil, genero);
@@ -147,7 +162,7 @@ public class UsuarioN {
     } //fin método,no retorna nada. Regresamos al usario servlet
 
     public void getActualizarUsuario(Usuario user) throws Exception {
-//throws es una clase que permite programar nuestras propias excepciones
+    //throws es una clase que permite programar nuestras propias excepciones
 
         Conexion con = new Conexion();
         String mensajeError = "";
@@ -206,29 +221,24 @@ public class UsuarioN {
   
 
         if (!"".equals(mensajeError)) {
-//! se está negando
+        //! se está negando
 
             throw new Exception(mensajeError);
         }//fin si no hay ningún error
-//ejecutamos la acción
+        //ejecutamos la acción
 
 
 
-//verificamos si elusuario existe
-
+        //validamos y enviamos una excepción al guardar el dato
 
         mensajeError = dao.getActualizarUsuario(con.getCon(), identidad, documento, nombre, apellidos, email,
                 celular, direccion, clave, telefono, estado, perfil, genero);
 
-//validamos y enviamos una excepción al guardar el dato
+
 
         if (!"".equals(mensajeError)) {
             throw new Exception(mensajeError);
         }
-
-//verificamos si elusuario existe
-
-
 
 
     } //fin método,no retorna nada. Regresamos al usario servlet  

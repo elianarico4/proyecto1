@@ -6,6 +6,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
+    <!--Se le anexa el estilo de la página-->
+    
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/Estilo.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>   
@@ -18,12 +20,14 @@
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
+    <!--Se invoca el menu general-->
     <div id="main">
         <div id="menubar">
             <div id="Bienvenidos"> </div>	
              <jsp:include page="MenuGeneral.jsp" flush="true"/>
            
 
+               <!--contenedor de imagenes en movimiento-->
             <div id="site_content">	
                 
                 <div id="banner_image">
@@ -39,7 +43,9 @@
                         </div>
                     </div>
                 
-            </div>	
+            </div>
+               
+               <!--Descripción general de la empresa-->
             <div class="sidebar_container">       
                 <div class="sidebar">
                     <div class="sidebar_item">

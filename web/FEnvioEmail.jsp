@@ -3,7 +3,7 @@ String men =(String) request.getAttribute("mensaje")!=null?(String) request.getA
 %>
 
 
-    <!-- form -->
+    <!--Creación de la ventana emergente ¿olvidó su contraseña? -->
     <form id="fondoformulario" name ="xForm" method="POST" action="./EmailServlet"/>
     <center><img src="imagenes/e.png"></center>
     <table >

@@ -1,3 +1,7 @@
+
+<!--Se crea el menú general de la interfaz principal, el cual es llamado en cada clase que se necesite-->
+
+
 <div id="menubar">
 	  <div id="BIENVENIDOS"> </div>
           <div id="menu_items">

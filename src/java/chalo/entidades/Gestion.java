@@ -12,7 +12,8 @@ import java.util.logging.Logger;
  */
 
 public class Gestion {
-
+    
+//Declaración variables de tipo cadena
     public Gestion() {
     }
 
@@ -20,7 +21,8 @@ public class Gestion {
   hora_Inicial ,hora_final , cant_terminadas , cant_pendientes ,usuariocreador ,  estado ,  total_horas;
   
   private String nombre_empleado, nombre_tarea, nombre_mueble; 
-
+//Getter and setter de cada variable del formulario Gestión
+    
     public String getNombre_empleado() {
         return nombre_empleado;
     }
@@ -44,7 +46,7 @@ public class Gestion {
     public void setNombre_mueble(String nombre_mueble) {
         this.nombre_mueble = nombre_mueble;
     }
-  
+   //Invocación de variables
     public Gestion(String consecutivo, String idempleado, String codmueble, String idtarea, String cantidad, String fecha_sistema, String hora_Inicial, String hora_final, String cant_terminadas, String cant_pendientes, String usuariocreador, String estado, String total_horas) {
         this.consecutivo = consecutivo;
         this.idempleado = idempleado;

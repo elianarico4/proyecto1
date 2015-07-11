@@ -107,7 +107,8 @@ id="" size="15" maxlength="10">
 </td>
   <td>Estado</td>
    <td><select  name="cboestado" class="texto">
-   <option value="">Seleccione</option>
+   
+     <option value="">Seleccione</option>
      <option value="Activo"<%if("Activo".equals(estado)){%>selected<% }%>>Activo</option>
      <option value="Inactivo"<%if("Inactivo".equals(estado)){%>selected<% }%>>Inactivo</option>
 
@@ -115,13 +116,13 @@ id="" size="15" maxlength="10">
 
 <tr>
 <td>Tamaño</td>
-<td><input type="text" name="txttama"value="<%=codigo!=null?codigo:""%>" placeholder="Ingrese tamaño" onkeypress="return numeros(event); "
+<td><input type="text" name="txttama"value="<%=tama!=null?tama:""%>" placeholder="Ingrese tamaño" 
 id="" size="15" maxlength="10">
 </td>
 
 
 <td>Color</td>
-<td><input type="text" name="txtcolor" class="texto" value="<%=codigo!=null?codigo:""%>" placeholder="Ingrese color"
+<td><input type="text" name="txtcolor" class="texto" value="<%=color!=null?color:""%>" placeholder="Ingrese color"
 id="" size="15" maxlength="20">
 </td>
 
@@ -155,7 +156,8 @@ id="" size="15" maxlength="10">
 </select>
 
 <td>Precio</td>
-<td><input type="text" name="txtprecio"  id ="fechav"  value="<%=fechav!=null?fechav:""%>"  placeholder="Ingrese fecha" id="" size="15" maxlength="10" onkeypress="return numeros(event); ">
+<td><input type="text" name="txtcolor" class="texto" value="<%=preci!=null?preci:""%>" placeholder="Ingrese precio"
+id="" size="15" maxlength="20">
  
 </td>
 
@@ -186,7 +188,7 @@ id="" size="15" maxlength="10">
                       <td><%=us.getPreci()%></td>
                       <td><%=us.getEstado()%></td>
                         
-                      <td><a href="./MateriaServlet?action=buscar&txtcodigo=<%=us.getCodigo()%>"><img src="imagenes/au.png" border="0" ></a></td>
+                      <td><a href="./MateriaServlet?action=buscar&txtcodigo=<%=us.getCodigo()%>"><img src="imagenes/asf.gif" border="0" ></a></td>
                   
                              
                       

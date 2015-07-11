@@ -58,7 +58,8 @@ public class EmailServlet extends HttpServlet {
         Usuario entU = new Usuario();
         String men = "";
          request.setAttribute("mensaje",null); 
-        
+      
+         //Correo electrónico del cual se enviará el usuario y la clave a recuperar
         
         String from = "ebanisteriachalo@gmail.com";
         String to = mail;
@@ -81,7 +82,7 @@ public class EmailServlet extends HttpServlet {
 
 
 
-
+//Validación de que campos serán enviados al correo electrónico del usuario
         if ("envio".equals(request.getParameter("action"))) {
           
             try {

@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
+    
+    <!--Implementación estilo-->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/Estilo.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>   
@@ -19,12 +21,15 @@
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
+    
+    <!--implementación menú principal-->
     <div id="main">
         <div id="menubar">
             <div id="Bienvenidos"> </div>	
              <jsp:include page="MenuGeneral.jsp" flush="true"/>
            
 
+             <!--contenedor de imagenes en movimiento-->
             <div id="site_content">	
                 
                 <div id="banner_image">
@@ -42,6 +47,7 @@
                 
             </div>	
 
+         <!--Descripción del sitio web de la empresa-->
 	  <div class="sidebar_container">       
 		<div class="sidebar">
           <div class="sidebar_item">
@@ -63,7 +69,10 @@
 		  </div>
       
      </div>
-      </div> 
+      </div>
+      
+         <!--creación interfaz misión y visión-->
+         
       <div id="content">
         <div class="content_item">
 		  <div class="form_settings">

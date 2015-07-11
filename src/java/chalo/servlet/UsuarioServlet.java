@@ -62,7 +62,7 @@ public class UsuarioServlet extends HttpServlet {
                 enti.setDocumento((""));
                 enti.setApellidos((""));
                 enti.setIdentidad((""));
-                enti.setEmail((""));
+                enti.setEmail(("@"));
                 enti.setCelular((""));
                 enti.setDireccion((""));
                 enti.setClave((""));

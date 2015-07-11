@@ -12,6 +12,7 @@ import java.util.List;
  * @author Usuario
  */
 public class Materia {
+    //Declaración variables de tipo cadena
     
 String codigo;
 String nombre;
@@ -29,6 +30,7 @@ static Materia cola = null;
 
      public Materia() {
     }
+     //Constructor que apunta al siguiente nodo de una lista sencilla
 
     public Materia(Materia siguiente) {
         this.cab = siguiente;
@@ -37,7 +39,7 @@ static Materia cola = null;
 
 
 
-
+ //Invocación de variables
     public Materia(String codigo, String nombre, String estado, String tama,  String color,
             String fechai, String fechav, String medida, String preci) {
         
@@ -54,6 +56,8 @@ static Materia cola = null;
         
     }
 
+     //Getter and setter de cada variable del formulario Usuario
+    
     public String getCodigo() {
         return codigo;
     }
@@ -160,7 +164,8 @@ static Materia cola = null;
         this.aux = aux;
     }
 
-    
+    //Métodos de listas
+    //Constructor que inserta al principio en una lista sencilla
      public String insertarPrincipio(Materia nuevo) {
         if (nuevo == null) {
             return "Nuevo registro nulo";
@@ -177,6 +182,7 @@ static Materia cola = null;
         }
     }
 
+     //Constructor que inserta al final en una lista sencilla
     public String insertarFinal(Materia nuevo) {
         if (nuevo == null) {
             return "Nuevo registro nulo";
@@ -193,6 +199,7 @@ static Materia cola = null;
         }
     }
 
+     //Constructor que busca por el código en una lista sencilla
     public Materia buscarMateria(Materia buscar) {
         if (buscar == null || cab == null) {
             return null;
@@ -210,6 +217,7 @@ static Materia cola = null;
      * @param actualizar
      * @return String
      */
+    //Actualizar Materia
     public String actualizarMateria(Materia actualizar) {
 
         if (cab != null) {
@@ -248,6 +256,7 @@ static Materia cola = null;
      * @param actualizar
      * @return
      */
+    //Busca y elimina usuario
     public String eliminarMateria(Materia eliminar) {
 
         if (cab != null) {
@@ -279,6 +288,7 @@ static Materia cola = null;
         return "No existe lista.";
     }
 
+     //Prueba funcionamiento listas sencillas
     public void imprimirLista() {
         if (cab != null) {
             aux = cab;
@@ -288,6 +298,8 @@ static Materia cola = null;
             }
         }
     }
+    
+    //Cargar las listas creadas al correr la aplicación
     
     public Materia cargarLista(){
         List<Materia> lista = new MateriaN().Listadomateria();

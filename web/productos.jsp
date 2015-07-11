@@ -11,7 +11,7 @@
 <head>
 
 
-
+<!--Implementación estilo a los productos-->
   <link href="css/Estilo.css" rel="stylesheet" type="text/css" />
   <link href="css/css.css" rel="stylesheet" type="text/css" />
 
@@ -20,6 +20,7 @@
 </head>
 
 <body>
+    <!--íconos a mostrar en la barra del menú-->
   <div id="main">
 
 	<div id="menubar">
@@ -43,6 +44,7 @@
     </div>
   
 
+      <!--Se llama la galería-->
 
     <div id="site_content">
 
@@ -58,7 +60,7 @@
           <ul class="thumbs noscript">
               
               
-           
+           <!--Implementación imágenes a mostrar en la ventana de productos-->
             <li>
     
               <a class="thumb" href="imagenes/8.png"></a>
@@ -128,7 +130,7 @@
     
 
  
-   
+  <!--implementacion del estilo al catálogo-jquery-->  
   <script type="text/javascript" src="js/jquery.min.js"></script>
  
   <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
@@ -142,10 +144,10 @@
   <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function($) {
-      // we only want these styles applied when javascript is enabled
+      // Sólo queremos estos estilos aplicados cuando avascript está activado
       $('div.navigation').css({'width' : '450px', 'float' : 'left'});
       $('div.content').css('display', 'block');
-      // initially set opacity on thumbs and add additional styling for hover effect on thumbs
+      // Añadir estilo original
       var onMouseOutOpacity = 0.67;
       $('#thumbs ul.thumbs li').opacityrollover({
         mouseOutOpacity:   onMouseOutOpacity,
@@ -153,7 +155,7 @@
         fadeSpeed:         'fast',
         exemptionSelector: '.selected'
       });
-      // initialize advanced galleriffic gallery
+      //  Inicialización avanzada galería galleriffic
       var gallery = $('#thumbs').galleriffic({
 
 

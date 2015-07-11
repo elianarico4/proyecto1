@@ -1,3 +1,6 @@
+
+
+
 <%
 String targetModulo = request.getAttribute("targetModulo") == null ? "FBlanco.jsp":(String)request.getAttribute("targetModulo");
 %>
@@ -8,6 +11,8 @@ String targetModulo = request.getAttribute("targetModulo") == null ? "FBlanco.js
 
 <table>
     <tr>
+        <!--Se llama el menú-->
+        
         <td >
         <jsp:include page="FMenu.jsp" flush="true"></jsp:include>
         </td>

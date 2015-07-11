@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
+    <!--Estilo de la interfaz principal-->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/Estilo.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>   
@@ -20,13 +21,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
     <div id="main">
+        
+        
+        
+        <!--implementación menú principal-->
         <div id="menubar">
             <div id="Bienvenidos"> </div>	
              <jsp:include page="MenuGeneral.jsp" flush="true"/>
            
 
             <div id="site_content">	
-                
+                <!--contenedor de imagenes en movimiento-->
                 <div id="banner_image">
                     <div id="slider" >
                         <img src="imagenes/Cafe5.png" />
@@ -41,7 +46,7 @@
                     </div>
                 
             </div>		
-
+       <!--Descripción del sitio web de la empresa-->
 	  <div class="sidebar_container">       
 		<div class="sidebar">
           <div class="sidebar_item">
@@ -61,7 +66,7 @@
             
                     
 		  </div>
-      
+      <!--creación interfaz contacto-->
      </div>
       </div> 
       <div id="content">

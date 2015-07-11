@@ -7,10 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style>
 
-
+ 
 body {
-   
-background:  url(imagenes/background.jpg);
+    
+background:  url(imagenes/background.jpg)
 </style>
 <link rel="stylesheet" type="text/css" href="css/estil.css"></link>
 <script type="text/javascript" src="js/validar.js">
@@ -20,13 +20,7 @@ background:  url(imagenes/background.jpg);
 
 <script type="text/javascript" src="js/validar.js"></script>
 <script type="text/javascript">
-    function popup(url,ancho,alto) {
-    var posicion_x; 
-    var posicion_y; 
-    posicion_x=(screen.width/2)-(ancho/2); 
-    posicion_y=(screen.height/2)-(alto/2); 
-    window.open(url, "tusitio.com", "width="+ancho+",height="+alto+",menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
-    }
+  
     </script>
 
 
@@ -45,7 +39,7 @@ background:  url(imagenes/background.jpg);
 
 
 <h3><center>Ebanistería y Carpintería "Chalo"</h1></center>
-
+<!--Creación formulario inicio de sesión-->
    
    <table left="100%">
      <tr>

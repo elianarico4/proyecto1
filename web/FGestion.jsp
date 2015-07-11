@@ -4,7 +4,7 @@
     Author     : Usuario
 --%>
 
-<%@page import="chalo.entidades.Tarea"%>
+
 <%@page import="chalo.entidades.Gestion"%>
 
 
@@ -13,9 +13,7 @@
 
 
 <%
-    //consecutivo,idempleado, codmueble,idtarea,cantidad,fecha_sistema,
-  //hora_Inicial ,hora_final , cant_terminadas , cant_pendientes ,usuariocreador 
-    //,  estado ,  total_horas
+     //Declaración de variables de tipo cadena
     
         String consecutivo = request.getParameter("txtconsecutivo");
         String idempleado = request.getParameter("txtidempleado");
@@ -30,18 +28,14 @@
         String usuariocreador = request.getParameter("txtusuariocreador");
         String estado = request.getParameter("cboestado");
         String total_horas = request.getParameter("txttotal_horas");
-       
+     
         
     String men = (String) request.getAttribute("mensaje");
     String dat = (String) request.getAttribute("datos");
  List<Gestion> LP = (List<Gestion>) request.getAttribute("Listado")!=null? (List<Gestion>) request.getAttribute("Listado"):null;
-    List<Tarea> LT = (List<Tarea>) request.getAttribute("ListadoTareas")!=null? (List<Tarea>) request.getAttribute("ListadoTareas"):null;
- 
- 
- 
  Gestion ges=(Gestion) request.getAttribute("datogestion")!=null?
           (Gestion) request.getAttribute("datogestion"):null;
- //los datos estan cargadoes en un usu(objeto) detipo Usuario
+ //los datos estan cargadoes en ges(objeto) de tipo Gestión
  //cargamos los datos en las variables
  if(ges!=null){
      consecutivo=ges.getConsecutivo();
@@ -69,11 +63,13 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 
 <html>
 <head>
-
+ 
+<!-- Validación sólo ingresar números -->    
  <script type="text/javascript" src="js/validar.js">
            
             
         </script>
+<!-- Implementación jquery y hoja de estilo -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ebanisteria Chalo</title>
     <link rel="stylesheet" type="text/css" href="css/estil.css"></link>
@@ -83,6 +79,9 @@ String ed =(String) request.getAttribute("actualizar")!=null?
   <script src="js/jquery-ui.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <script>
+   
+// Creación del calendario
+      
   $(function() {
     $( "#fechasis" ).datepicker();
   });
@@ -103,8 +102,9 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 
    
  </head>
-
- <form name="xform"  method="POST" action="./GestionServlet">
+ 
+ <form name="xform"  method="POST" action="./GestionServlet"> <!-- Declaración del método a utilizar y se llama la clase Servlet -->
+     
 <h1><center>Gestión de Tareas</h1></center>    
 <h1><center>Ebanistería y Carpintería "Chalo"</h1></center>
 
@@ -114,7 +114,8 @@ String ed =(String) request.getAttribute("actualizar")!=null?
 
 </tr>
 <tr>
-       
+
+    <!-- Realización del formulario Gestión --> 
                      
 <td>Consecutivo</td>
 <td>
@@ -137,14 +138,7 @@ id="" size="15" maxlength="15"></td>
 
 <td>Id Tarea</td>
  <td><select  name="cbotarea" class="texto">
-   <option value="">Seleccione</option>
-    <%if(LT!=null){%>
-    <%for (Tarea t :LT ){%>
-    <option value="<%=t.getCodigo()%>"> <%=t.getDescripcion()  + " Costo: " +  t.getCosto_hora()   %></option>
-     <%}%> 
-     <%}%> 
-    
-    
+   <option value="">Seleccione</option> 
     
 </td>
 
@@ -209,15 +203,17 @@ id="" size="15" maxlength="15">
 </table>      
                
                 
+           <!-- Se invocan los boton-->
            
-           
-                
                 <jsp:include page="FBotones.jsp" flush="true"/>
                 <p><%=men!=null? men:""%></p>
               <%if(LP!= null ){%>
               
+                <!-- Creación de la tabla donde se va a mostrar la información -->
+              
                 <table width="100%" height="200" border="1" cellspacing="3" cellpading=5"">
 
+                    <!-- Datos a mostrar en la tabla -->
                   <tr>
                        <td>Consecutivo</td>       
                        <td>Id Empleado</td>
@@ -247,16 +243,9 @@ id="" size="15" maxlength="15">
                          <td><%=us.getCant_pendientes()%></td>
                          
                          
-                         
-                        
-                        
-                     
-                       
-                     
-                         
-                             
+                   <!-- Buscar dando click en imagen -->  
                       
-                         <td><a href="./GestionServlet?action=buscar&txtconsecutivo=<%=us.getConsecutivo()%>"><img src="imagenes/au.png" border="0" ></a></td>  
+                         <td><a href="./GestionServlet?action=buscar&txtconsecutivo=<%=us.getConsecutivo()%>"><img src="imagenes/asf.gif" border="0" ></a></td>  
                   </tr>
                   <%}%>
                   

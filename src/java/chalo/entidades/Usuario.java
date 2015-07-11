@@ -12,7 +12,7 @@ import java.util.List;
  * @author Usuario
  */
 public class Usuario {
-
+//Declaración variables de tipo cadena
     String identidad;
     String documento;
     String nombre;
@@ -33,11 +33,14 @@ public class Usuario {
     public Usuario() {
     }
 
+    //Constructor que apunta al siguiente nodo de una lista sencilla
+    
     public Usuario(Usuario siguiente) {
         this.cab = siguiente;
         this.siguiente = siguiente;
     }
 
+    //Invocación de variables
     public Usuario(String identidad, String documento, String nombre, String apellidos, String email, String celular, String direccion, String clave, String telefono, String estado, String perfil, String genero) {
         this.identidad = identidad;
         this.documento = documento;
@@ -53,6 +56,8 @@ public class Usuario {
         this.genero = genero;
     }
 
+    //Getter and setter de cada variable del formulario Usuario
+    
     public String getIdentidad() {
         return identidad;
     }
@@ -181,7 +186,8 @@ public class Usuario {
         this.aux = aux;
     }
 
-    //Metodos de listas
+    //Métodos de listas
+    //Constructor que inserta al principio en una lista sencilla
     public String insertarPrincipio(Usuario nuevo) {
         if (nuevo == null) {
             return "Nuevo registro nulo";
@@ -198,6 +204,7 @@ public class Usuario {
         }
     }
 
+    //Constructor que inserta al final en una lista sencilla
     public String insertarFinal(Usuario nuevo) {
         if (nuevo == null) {
             return "Nuevo registro nulo";
@@ -214,6 +221,7 @@ public class Usuario {
         }
     }
 
+    //Constructor que busca por el documento identidad en una lista sencilla
     public Usuario buscarUsuario(Usuario buscar) {
         if (buscar == null || cab == null) {
             return null;
@@ -231,6 +239,7 @@ public class Usuario {
      * @param actualizar
      * @return String
      */
+    //Actualizar usuario
     public String actualizarUsuario(Usuario actualizar) {
 
         if (cab != null) {
@@ -269,6 +278,8 @@ public class Usuario {
      * @param actualizar
      * @return
      */
+    
+    //Busca y elimina usuario
     public String eliminarUsuario(Usuario eliminar) {
 
         if (cab != null) {
@@ -300,6 +311,7 @@ public class Usuario {
         return "No existe lista.";
     }
 
+    //Prueba funcionamiento listas sencillas
     public void imprimirLista() {
         if (cab != null) {
             aux = cab;
@@ -310,6 +322,7 @@ public class Usuario {
         }
     }
     
+    //Cargar las listas creadas al correr la aplicación
     public Usuario cargarLista(){
         List<Usuario> lista = new UsuarioN().ListadoUsuario();
         if(lista != null){

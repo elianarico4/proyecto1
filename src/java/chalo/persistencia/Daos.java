@@ -12,9 +12,9 @@ import java.util.List;
 import chalo.entidades.Usuario;
 
 import chalo.entidades.Gestion;
-import chalo.entidades.Mueble;
 import chalo.entidades.Materia;
-import chalo.entidades.Tarea;
+
+
 
 /**
  *
@@ -23,9 +23,10 @@ import chalo.entidades.Tarea;
 
 
 public class Daos {
-    //copiamos este metodo
+    //Creación lista Usuarios
 public List<Usuario>ListadoUsuarios (Connection con) {
-    
+  
+//Inicio conexión Usuario
  List<Usuario> resultado = new  ArrayList<Usuario>(); 
  try{
  PreparedStatement p=  con.prepareStatement(SQLHelpers.getUsuarios());
@@ -52,6 +53,8 @@ ResultSet r=p.executeQuery();
 }//fin mientras
 
  }//fin Try
+ 
+ //Captura de errores
  catch(Exception e1){}
  finally{
 try{con.close();}//fin control cerrar conexion     
@@ -63,8 +66,8 @@ try{con.close();}//fin control cerrar conexion
  return resultado;  
    }//fin métodos 
     
-public Usuario getUsuario(Connection con,String ide) {
-        
+//Se establece conexión
+public Usuario getUsuario(Connection con,String ide) {    
     
 Usuario u =new Usuario();
  try{
@@ -94,6 +97,8 @@ ResultSet r=p.executeQuery();
     
      return u;
     }//fin finally
+
+//Valida la recuperación de clave al correo electrónico
 
 public Usuario getUsuarioEmail(Connection con,String email) {
         
@@ -128,6 +133,7 @@ ResultSet r=p.executeQuery();
      return u;
     }//fin finally
 
+//Insertar Usuario de tipo cadena y lo guarda
 public String getInsertarUsuario(
         Connection con,
        String identidad,
@@ -176,6 +182,8 @@ return respuesta;
 }//Fin metodo regresamos a la capa de negocio
 //usuarioN
 
+//Permite actualizar un Usuario
+
 public String getActualizarUsuario(
         Connection con,
         String identidad,
@@ -193,8 +201,6 @@ public String getActualizarUsuario(
         ){
 String respuesta="";
 try{
-//"UPDATE tblusuario set identidad=1, documento=2,apellidos=3,email=4,celular=5,
-    //direccion=6,clave=7,telefono=8,estado=9, perfil=10, genero=11  where nombre=12"
 
 PreparedStatement p= con.prepareStatement(SQLHelpers.getAltualizarUsuario());
 //(?,?,?,?,?,?,?,?,?,?,?,?)
@@ -227,6 +233,7 @@ return respuesta;
 }
 
 
+//Valida el ingreso al sistema con el documento de identidad y clave
 
 public Usuario getValidarIngreso(Connection con,String identidad,String clave ){
 Usuario u = new Usuario();
@@ -263,6 +270,7 @@ catch(Exception clo){}
  return u;   
 }// fin métodos
 
+//Verficia si existe el Usuario buscado
 public boolean getVerSiExisteUsuario(Connection con,String ide) {
         
     
@@ -284,6 +292,7 @@ ResultSet r=p.executeQuery();
 return u;
 }//fin existe usuario
 
+//Verifica si existe el correo electrónico al cual se va a enviar la recuperación de la clave
 
 public boolean getVerSiExisteEmail(Connection con,String email) {
         
@@ -307,183 +316,179 @@ return u;
 }//fin si existe email
 
 
+public List<Materia>Listadomateria (Connection con) {
+    
+ List<Materia> resultado = new  ArrayList<Materia>(); 
+ try{
+ PreparedStatement p=  con.prepareStatement(SQLHelpersMateria.getMateria());
+ResultSet r=p.executeQuery();
+ while(r.next()){
+  Materia u= new Materia();
+     u.setCodigo(r.getString(1));
+     u.setNombre(r.getString(2));
+     u.setEstado(r.getString(3));
+     u.setTama(r.getString(4));
+     u.setColor(r.getString(5));
+     u.setFechai(r.getString(6));
+     u.setFechav(r.getString(7));
+     u.setMedida(r.getString(8));
+     u.setPreci(r.getString(9));
+    
+    resultado.add(u);
+    
+ 
+ 
+}//fin mientras
 
-//GESTIÓN TAREAS
+ }//fin Try
+ catch(Exception e1){}
+ finally{
+try{con.close();}//fin control cerrar conexión     
+ catch(Exception clo){}
+ 
+ }//fin finally
+ 
+ 
+ return resultado;  
+   }//fin métodos 
+    
+public Materia getMateria(Connection con,String cod) {
+        
+    
+Materia u =new Materia();
+ try{
+ PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getMateria(cod));
+ResultSet r=p.executeQuery();
+ while(r.next()){
+    
+     u.setCodigo(r.getString(1));
+     u.setNombre(r.getString(2));
+     u.setEstado(r.getString(3));
+     u.setTama(r.getString(4));
+     u.setColor(r.getString(5));
+     u.setFechai(r.getString(6));
+     u.setFechav(r.getString(7));
+     u.setMedida(r.getString(8));
+     u.setPreci(r.getString(9));
+}//fin mientras
+}//fin Try
+ catch(Exception e1){}
+ finally{}
+     try{con.close();}
+     catch(Exception clo){}
+ 
+    
+     return u;
+    }//fin finally
 
-//Fin metodo regresamos a la capa de negocio
+
+public String getInsertarMateria(
+        Connection con,
+                String codigo,
+                String nombre,
+                String estado,
+                String tama,
+                String color,
+                String fechai,
+                String fechav,
+                String medida,
+                String preci
+        ){
+String respuesta="";
+try{
+PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getInsertarMateria());
+//(?,?,?,?,?)
+p.setString(1, codigo);
+p.setString(2, nombre);
+p.setString(3, estado);
+p.setString(4, tama);
+p.setString(5, color);
+p.setString(6, fechai);
+p.setString(7, fechav);
+p.setString(8, medida);
+p.setString(9, preci);
+//Luego ejecutamos la acciom
+p.execute();//Este metdodo no retorna filas
+// a diferencia del metodo executeQuery()
+if(p.getUpdateCount()>0){
+respuesta="Materia agregada";
+}else{
+respuesta="Error..Materia no agregada";
+}//fin si 
+}catch(Exception e){
+respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
+}finally{try{con.close();}catch(Exception e1){}}//fin finally
+//con. close(); permite cerrar la conexion a la 
+return respuesta;
+
+}//Fin metodo regresamos a la capa de negocio
 //usuarioN
 
-//public List<Sede>ListadoSedes (Connection con, String campo, String valor ) {
-    
-// List<Sede> resultado = new  ArrayList<Sede>(); 
- //try{
- //PreparedStatement p=  con.prepareStatement(SQLHelpers.getSedes(campo, valor));
-//ResultSet r=p.executeQuery();
-// while(r.next()){
-  //Sede u= new Sede();
-   //u.setIdentidad(r.getString(1));
-   //u.setDocumento(r.getString(2));
-   //u.setNombre(r.getString(3));
-   //u.setApellidos(r.getString(4));
-   //u.setEmail(r.getString(5));
-   //u.setCelular(r.getString(6));
-   //u.setDireccion(r.getString(7));
-   //u.setClave(r.getString(8));
-   //u.setTelefono(r.getString(9));
-   //u.setEstado(r.getString(10));
-   //u.setPerfil(r.getString(11));
-   // u.setGenero(r.getString(12));
-    
-    //resultado.add(u);
-    
- 
- 
-//}//fin mientras
+public String getActualizarMateria(
+        Connection con,
+                String codigo,
+                String nombre,
+                String estado,
+                String tama,
+                String color,
+                String fechai,
+                String fechav,
+                String medida,
+                String preci
+        ){
+String respuesta="";
+try{
+//"UPDATE tblusuario set identidad=1, documento=2,apellidos=3,email=4,celular=5,
+    //direccion=6,clave=7,telefono=8,estado=9, perfil=10, genero=11  where nombre=12"
 
-// }//fin Try
- //catch(Exception e1){}
- ///finally{
-///try{con.close();}//fin control cerrar conexion     
- //catch(Exception clo){}
- 
- //}//fin finally
- 
- 
- //return resultado;  
-   //}//fin métodos 
-
-//public String getInsertarSede(
-        //Connection con,
-       //String identidad,
-        //String documento,
-        //String nombre,
-        //String apellidos,
-        //String email,
-        //String celular,
-        //String direccion,
-        //String clave,
-        //String telefono,
-        //String estado,
-        //String perfil,
-        //String genero
-        //){
-//String respuesta="";
-//try{
-//PreparedStatement p= con.prepareStatement(SQLHelpers.getInsertarSede());
+PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getAltualizarMateria());
 //(?,?,?,?,?,?,?,?,?,?,?,?)
-//p.setString(1, identidad);
-//p.setString(2, documento);
-//p.setString(3, nombre);
-//p.setString(4, apellidos);
-//p.setString(5, email);
-//p.setString(6, celular);
-//p.setString(7, direccion);
-//p.setString(8, clave);
-//p.setString(9, telefono);
-//p.setString(10, estado);
-//p.setString(11, perfil);
-//p.setString(12, genero);
+p.setString(1, codigo);
+p.setString(2, nombre);
+p.setString(3, estado);
+p.setString(4, tama);
+p.setString(5, color);
+p.setString(6, fechai);
+p.setString(7, fechav);
+p.setString(8, medida);
+p.setString(9, preci);
 //Luego ejecutamos la acciom
-///p.execute();//Este metdodo no retorna filas
+p.execute();//Este metdodo no retorna filas
 // a diferencia del metodo executeQuery()
-//if(p.getUpdateCount()>0){//SE AFECTÓ AL MENOS UN REGISTRO
-//respuesta="Sede agregado";
-//}else{
-//respuesta="Error..Sede no agregado";
-//}//fin si 
-//}catch(Exception e1){
-//respuesta+=":"+ e1.getMessage() + "Causa :"+e.getCause();
-//}finally{try{con.close();}catch(Exception e1){}}//fin finally
+if(p.getUpdateCount()>0){//SE AFECTÓ AL MENOS UN REGISTRO
+respuesta="Materia actualizada";
+}else{
+respuesta="Error..Materia no actualizada";
+}//fin si 
+}catch(Exception e){
+respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
+}finally{try{con.close();}catch(Exception e1){}}//fin finally
 //con. close(); permite cerrar la conexion a la base de datos
-//return respuesta;
+return respuesta;
 
-//}//Fin metodo regresamos a la capa de negocio
+}
 
-//public String getActualizarSede(
-        //Connection con,
-       //String identidad,
-        //String documento,
-        //String nombre,
-        //String apellidos,
-        //String email,
-        //String celular,
-        //String direccion,
-        //String clave,
-        //String telefono,
-        //String estado,
-        //String perfil,
-        //String genero// se quitajn el usuario y la fecha de creación
-        //){
-//String respuesta="";
-//try{
-//PreparedStatement p= con.prepareStatement(SQLHelpers.getActualizarSede());
-//(?,?,?,?,?,?,?,?,?,?,?,?)
-//p.setString(1, identidad);
-//p.setString(2, documento);
-//p.setString(3, nombre);
-//p.setString(4, apellidos);
-//p.setString(5, email);
-//p.setString(6, celular);
-//p.setString(7, direccion);
-//p.setString(8, clave);
-//p.setString(9, telefono);
-//p.setString(10, estado);
-//p.setString(11, perfil);
-//p.setString(12, genero);se mira el actualizar sede del daos y se pone de acuerdo al orden de éste
-//Luego ejecutamos la acciom
-///p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-//if(p.getUpdateCount()>0){//SE AFECTÓ AL MENOS UN REGISTRO
-//respuesta="Sede modificada";
-//}else{
-//respuesta="Error..Sede no modificada";
-//}//fin si 
-//}catch(Exception e1){
-//respuesta+=":"+ e1.getMessage() + "Causa :"+e.getCause();
-//}finally{try{con.close();}catch(Exception e1){}}//fin finally
-//con. close(); permite cerrar la conexion a la base de datos
-//return respuesta;
-
-//}//Fin metodo regresamos a la capa de negocio
-
-//public Sede getSedes (Connection con, String campo, String valor ) {
+public boolean getVerSiExisteMateria(Connection con,String cod) {
+        
     
-// Sede u = new Sede(); 
- //try{
- //PreparedStatement p=  con.prepareStatement(SQLHelpers.getSedes(campo, valor));
-//ResultSet r=p.executeQuery();
-// while(r.next()){
-  //Sede u= new Sede();
-   //u.setIdentidad(r.getString(1));
-   //u.setDocumento(r.getString(2));
-   //u.setNombre(r.getString(3));
-   //u.setApellidos(r.getString(4));
-   //u.setEmail(r.getString(5));
-   //u.setCelular(r.getString(6));
-   //u.setDireccion(r.getString(7));
-   //u.setClave(r.getString(8));
-   //u.setTelefono(r.getString(9));
-   //u.setEstado(r.getString(10));
-   //u.setPerfil(r.getString(11));
-   // u.setGenero(r.getString(12));
+boolean u = false;
+ try{
+ PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getMateria(cod));
+ResultSet r=p.executeQuery();
+ while(r.next()){
+ u=true;   
     
-  
+}//fin mientras
+}//fin Try
+ catch(Exception e1){}
+ finally{}
+ try{con.close();}
+ catch(Exception clo){}
+ 
     
- 
- 
-//}//fin mientras
+return u;
+}//fin existe usuario
 
-// }//fin Try
- //catch(Exception e1){}
- ///finally{
-///try{con.close();}//fin control cerrar conexion     
- //catch(Exception clo){}
- 
- //}//fin finally
- 
- 
- //return u;  
-   //}//fin métodos 
 
 
 public List<Gestion>Listadogestion(Connection con) {
@@ -679,402 +684,6 @@ respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
 //con. close(); permite cerrar la conexion a la 
 return respuesta;
 }//Fin metodo regresamos a la capa de negocio}
-
-//String codigo, String medida, String fechai, String fechav,
-            //String estado, String descripcion
-
-
-//String codigo;
-//String nombre;
-//String estado;
-//String tama;
-//String color;
-//String fechai;
-//String fechav;
-//String medida;
-//String preci;
-
-public List<Materia>Listadomateria (Connection con) {
-    
- List<Materia> resultado = new  ArrayList<Materia>(); 
- try{
- PreparedStatement p=  con.prepareStatement(SQLHelpersMateria.getMateria());
-ResultSet r=p.executeQuery();
- while(r.next()){
-  Materia s= new Materia();
- s.setCodigo(r.getString(1));
- s.setNombre(r.getString(2));
- s.setEstado(r.getString(3));
- s.setTama(r.getString(4));
- s.setColor(r.getString(5));
- s.setFechai(r.getString(6));
- s.setFechav(r.getString(7));
- s.setMedida(r.getString(8));
- s.setPreci(r.getString(9));
-
- resultado.add(s);
- 
- 
-}//fin mientras
-
- }//fin Try
- catch(Exception e2){
- e2.printStackTrace();
- }
- finally{
-try{con.close();}//fin control cerrar conexion     
- catch(Exception clo2){}
- 
- }//fin finally
- 
- 
- return resultado;  
-}//fin métodos 
-
-public Materia getMateria(Connection con,String idv) {
-        
-    
-Materia s =new Materia();
- try{
- PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getMateria(idv));
-ResultSet r=p.executeQuery();
- while(r.next()){
- 
- s.setCodigo(r.getString(1));
- s.setNombre(r.getString(2));
- s.setEstado(r.getString(3));
- s.setTama(r.getString(4));
- s.setColor(r.getString(5));
- s.setFechai(r.getString(6));
- s.setFechav(r.getString(7));
- s.setMedida(r.getString(8));
- s.setPreci(r.getString(9));
-
-}//fin mientras
-}//fin Try
- catch(Exception e1){}
- finally{}
-     try{con.close();}
-     catch(Exception clo){}
- 
-    
-     return s;
-    }//fin finally
-
-public String getInsertarMateria(
-        Connection con,
-            String codigo,
-            String nombre,
-            String estado,
-            String tama,
-            String color,
-            String fechai,
-            String fechav,
-            String medida,
-            String preci
-       
-        
-   ){
-String respuesta="";
-try{
-PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getInsertarMateria());
-//(?,?,?,?,?)
-p.setString(1, codigo);
-p.setString(2, nombre);
-p.setString(3, estado);
-p.setString(4, tama);
-p.setString(5, color);
-p.setString(6, fechai);
-p.setString(7, fechav);
-p.setString(8, medida);
-p.setString(9, preci);
-
-
-//Luego ejecutamos la acciom
-p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-if(p.getUpdateCount()>0){
-respuesta="Materia agregada";
-}else{
-respuesta="Error..!Materia no agregada";
-}//fin si 
-}catch(Exception e){
-respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
-}finally{try{con.close();}catch(Exception e2){}}//fin finally
-//con. close(); permite cerrar la conexion a la 
-return respuesta;
-}//Fin metodo regresamos a la capa de negocio
-//productosN
-
-
-public String getActualizarMateria(
-        Connection con,
-             
-            String codigo,
-            String nombre,
-            String estado,
-            String tama,
-            String color,
-            String fechai,
-            String fechav,
-            String medida,
-            String preci
-        ){
-String respuesta="";
-try{
-//"UPDATE tblusuario set identidad=1, documento=2,apellidos=3,email=4,celular=5,
-    //direccion=6,clave=7,telefono=8,estado=9, perfil=10, genero=11  where nombre=12"
-
-PreparedStatement p= con.prepareStatement(SQLHelpersMateria.getActualizarMateria());
-//(?,?,?,?,?,?,?,?,?,?,?,?)
-p.setString(1, codigo);
-p.setString(2, nombre);
-p.setString(3, estado);
-p.setString(4, tama);
-p.setString(5, color);
-p.setString(6, fechai);
-p.setString(7, fechav);
-p.setString(8, medida);
-p.setString(9, preci);
-//Luego ejecutamos la acciom
-p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-if(p.getUpdateCount()>0){//SE AFECTÓ AL MENOS UN REGISTRO
-respuesta="Materia actualizada";
-}else{
-respuesta="Error..Materia no actualizada";
-}//fin si 
-}catch(Exception e){
-respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
-}finally{try{con.close();}catch(Exception e1){}}//fin finally
-//con. close(); permite cerrar la conexion a la base de datos
-return respuesta;
-
-}
-
-
-
-//MUEBLES
-public List<Mueble>ListadoMueble (Connection con1) {
-    
- List<Mueble> resultado = new  ArrayList<Mueble>(); 
- try{
- PreparedStatement p=  con1.prepareStatement(SQLHelpers2.getMueble());
-ResultSet r=p.executeQuery();
- while(r.next()){
-  Mueble m= new Mueble();
-    m.setCodigo(r.getString(1));
-    m.setTipomueble(r.getString(2));
-    m.setCostopro(r.getString(3));
-    m.setCostoven(r.getString(4));
-    m.setEstado(r.getString(5));
-    m.setDescripcion(r.getString(6));
-   
-    
-    resultado.add(m);
-    
- 
- 
-}//fin mientras
-
- }//fin Try
- catch(Exception e2){}
- finally{
-try{con1.close();}//fin control cerrar conexion     
- catch(Exception clo2){}
- 
- }//fin finally
- 
- 
- return resultado;  
-   }//fin métodos 
-
-public Mueble getMueble(Connection con,String ide) {
-        
-    
-Mueble m =new Mueble();
- try{
- PreparedStatement p= con.prepareStatement(SQLHelpers2.getMueble(ide));
-ResultSet r=p.executeQuery();
- while(r.next()){
-    
-    m.setCodigo(r.getString(1));
-    m.setTipomueble(r.getString(2));
-    m.setCostopro(r.getString(3));
-    m.setCostoven(r.getString(4));
-    m.setEstado(r.getString(5));
-    m.setDescripcion(r.getString(6));
-}//fin mientras
-}//fin Try
- catch(Exception e2){}
- finally{}
-     try{con.close();}
-     catch(Exception clo2){}
- 
-    
-     return m;
-    }//fin finally
-
-public String getInsertarMueble(
-        Connection con1,
-        String codigo,
-        String tipomueble,
-        String costopro,
-        String costoven,
-        String estado,
-        String descripcion
-        ){
-String respuesta="";
-try{
-PreparedStatement p= con1.prepareStatement(SQLHelpers2.getInsertaMueble());
-//(?,?,?,?,?)
-p.setString(1, codigo);
-p.setString(2, tipomueble);
-p.setString(3, costopro);
-p.setString(4, costoven);
-p.setString(5, estado);
-p.setString(6, descripcion);
-
-//Luego ejecutamos la acciom
-p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-if(p.getUpdateCount()>0){
-respuesta="Mueble agregado";
-}else{
-respuesta="Error..!Mueble no agregado";
-}//fin si 
-}catch(Exception e){
-respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
-}finally{try{con1.close();}catch(Exception e2){}}//fin finally
-//con. close(); permite cerrar la conexion a la 
-return respuesta;
-
-}//
-
-
-//Tareas
-public List<Tarea>ListadoTareas(Connection con) {
-    
- List<Tarea> resultado = new  ArrayList<Tarea>(); 
- try{
- PreparedStatement p=  con.prepareStatement(SQLHelpersTarea.getTarea());
-ResultSet r=p.executeQuery();
- while(r.next()){
-  Tarea s= new Tarea();
- s.setCodigo(r.getString(1));
- s.setDescripcion(r.getString(2));
- s.setCosto_hora(r.getString(3));
-
-
- resultado.add(s);
- 
- 
-}//fin mientras
-
- }//fin Try
- catch(Exception e2){
- e2.printStackTrace();
- }
- finally{
-try{con.close();}//fin control cerrar conexion     
- catch(Exception clo2){}
- 
- }//fin finally
- 
- 
- return resultado;  
-}//fin métodos 
-
-public Tarea getTarea(Connection con,String tar) {
-        
-    
-Tarea s =new Tarea();
- try{
- PreparedStatement p= con.prepareStatement(SQLHelpersTarea.getTarea(tar));
-ResultSet r=p.executeQuery();
- while(r.next()){
- s.setCodigo(r.getString(1));
- s.setDescripcion(r.getString(2));
- s.setCosto_hora(r.getString(3));
-
-}//fin mientras
-}//fin Try
- catch(Exception e1){}
- finally{}
-     try{con.close();}
-     catch(Exception clo){}
- 
-    
-     return s;
-    }//fin finally
-
-public String getInsertarTarea(
-        Connection con,
-        String codigo,
-        String descripcion,
-        String costo_hora
-       
-       
-        
-   ){
-String respuesta="";
-try{
-PreparedStatement p= con.prepareStatement(SQLHelpersTarea.getInsertarTarea());
-//(?,?,?,?,?)
-p.setString(1, codigo);
-p.setString(2, descripcion);
-p.setString(3, costo_hora);
-
-
-
-//Luego ejecutamos la acciom
-p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-if(p.getUpdateCount()>0){
-respuesta="Tarea agregada";
-}else{
-respuesta="Error..!Tarea no agregada";
-}//fin si 
-}catch(Exception e){
-respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
-}finally{try{con.close();}catch(Exception e2){}}//fin finally
-//con. close(); permite cerrar la conexion a la 
-return respuesta;
-}
-
-public String getActualizarTarea(
-        Connection con,
-        String codigo,
-        String descripcion,
-        String costo_hora
-        ){
-String respuesta="";
-try{
-//"UPDATE tblusuario set identidad=1, documento=2,apellidos=3,email=4,celular=5,
-    //direccion=6,clave=7,telefono=8,estado=9, perfil=10, genero=11  where nombre=12"
-
-PreparedStatement p= con.prepareStatement(SQLHelpersTarea.getActualizarTarea());
-//(?,?,?,?,?,?,?,?,?,?,?,?)
-p.setString(1, codigo);
-p.setString(2, descripcion);
-p.setString(3, costo_hora);
-//Luego ejecutamos la acciom
-p.execute();//Este metdodo no retorna filas
-// a diferencia del metodo executeQuery()
-if(p.getUpdateCount()>0){//SE AFECTÓ AL MENOS UN REGISTRO
-respuesta="Tarea actualizada";
-}else{
-respuesta="Error..Tarea no actualizada";
-}//fin si 
-}catch(Exception e){
-respuesta+=":"+ e.getMessage() + "Causa :"+e.getCause();
-}finally{try{con.close();}catch(Exception e1){}}//fin finally
-//con. close(); permite cerrar la conexion a la base de datos
-return respuesta;
-
-}
-
-
 
 public String getConsecutivoGestion(Connection con) {
         

@@ -5,7 +5,6 @@
 package chalo.negocio;
 
 import chalo.entidades.Gestion;
-import chalo.entidades.Tarea;
 import chalo.persistencia.Daos;
 import chalo.utilidades.Conexion;
 import java.sql.Connection;
@@ -41,14 +40,7 @@ return dao.getConsecutivoGestion(c);
     
 }//Fin lista de datos   
      
-     
-   public List<Tarea>Listadotareas(){
-Connection c= new Conexion().getCon();
-return dao.ListadoTareas(c);
-//una vez prrogramado nos vamos para proveedores servlet
-    
-}//Fin lista de datos
-//Buscar un dato
+
     
      /**
      *

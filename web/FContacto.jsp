@@ -1,9 +1,17 @@
+<%-- 
+    Document   : FContacto
+    Author     : KAREN MALDONADO Y ELIANA MEDINA
+--%>
+
+<!--//Declaración del atributo mensaje que es de tipo cadena-->
+
+
 <%
 String men =(String) request.getAttribute("mensaje")!=null?(String) request.getAttribute("mensaje"):null;
 %>
 
 
-    <!-- form -->
+    <!--  -->
     <form id="fondoformulario" name ="xForm" method="POST" action="./SugerenciasServlet"/>
     <center><img src="imagenes/e.png"></center>
     <table >

@@ -37,6 +37,8 @@ public class Autenticacion extends HttpServlet {
         String identidad= request.getParameter("txtnumero");
         String  clave = request.getParameter("txtclave");
         String men ="";
+        
+     //Si se encuentran campos vacíos muestra mensaje    
         if("".equals(identidad)||null==identidad){
             men+="<br>Agregue Usuario";
         
@@ -51,6 +53,8 @@ public class Autenticacion extends HttpServlet {
         
         UsuarioN  n = new UsuarioN();
         
+       //El ingreso al sistema se da por el documento identidad y la clave
+        
         if("".equals(men)){
         Usuario u= n.getValidarIngreso(identidad, clave);
         
@@ -61,7 +65,7 @@ public class Autenticacion extends HttpServlet {
         }
         else
         {
-          // request.setAttribute("target", "./FPrincipal.jsp");
+           request.setAttribute("target", "./FPrincipal.jsp");
             men="Los datos no coinciden";  
             request.setAttribute("target", "./FLoginBox.jsp");
           

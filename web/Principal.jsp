@@ -7,6 +7,8 @@
 
 %>
 <html>
+    
+    <!--Se declara el nombre principal a la aplicación en general y se le agrega el estilo-->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ebanistería y Carpintería "Chalo"</title>
